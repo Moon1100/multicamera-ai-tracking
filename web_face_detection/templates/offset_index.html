@@ -1,0 +1,24 @@
+<!-- Import SocketIO JavaScript library -->
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+
+<!-- Connect to WebSocket server -->
+<script>
+    const socket = io.connect('http://localhost:5000');
+    socket.on('connect', () => {
+        console.log('WebSocket connected');
+    });
+
+    // Function to handle camera offset update
+    function handleCameraOffsetUpdate(data) {
+        // Implement code to adjust PTZ camera based on camera offset
+        // Use data.x and data.y to get camera offset values
+        console.log(`Camera offset update: x=${data.x}, y=${data.y}`);
+    }
+
+    // Subscribe to camera offset updates
+    socket.on('camera_offset_update', handleCameraOffsetUpdate);
+</script>
+
+
+
+<!-- for publisher2 -->
