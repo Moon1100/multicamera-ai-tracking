@@ -12,9 +12,9 @@ pwm.setPWMFreq(50)
 
 # Set servo parameters
 HPulse = 1500  # Sets the initial Pulse
-HStep = -5    # Sets the initial step length
+HStep = 0    # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
-VStep = 0    # Sets the initial step length (constant movement up)
+VStep = -5    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
 pwm.setServoPulse(0, HPulse)
 
@@ -46,11 +46,11 @@ def timerfunc():
         HPulse += HStep
         if HPulse >= 2500: 
             HPulse = 2500
-            HStep = -5 
+            # HStep = -5 
 
         if HPulse <= 500:
             HPulse = 500
-            HStep = 5 
+            # HStep = 5 
 
         # set channel 2, the Horizontal servo
         pwm.setServoPulse(0, HPulse)
@@ -59,10 +59,10 @@ def timerfunc():
         VPulse += VStep
         if VPulse >= 2500: 
             VPulse = 2500
-            # VStep = -5 
+            VStep = -5 
         if VPulse <= 500:
             VPulse = 500
-            # VStep = 5 
+            VStep = 5 
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
     # restart the timer
