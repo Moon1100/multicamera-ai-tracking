@@ -16,7 +16,7 @@ HStep = 0      # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
 VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
-pwm.setServoPulse(1, HPulse)
+pwm.setServoPulse(0, HPulse)
 
 
 
