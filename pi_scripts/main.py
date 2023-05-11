@@ -14,7 +14,7 @@ pwm.setPWMFreq(50)
 HPulse = 1500  # Sets the initial Pulse
 HStep = 0      # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
-VStep = -5     # Sets the initial step length (constant movement up)
+VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
 pwm.setServoPulse(0, HPulse)
 
