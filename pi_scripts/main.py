@@ -16,7 +16,7 @@ HStep = 0      # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
 VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
-pwm.setServoPulse(0, HPulse)
+pwm.setServoPulse(1, HPulse)
 
 
 
@@ -71,7 +71,7 @@ t.setDaemon(True)
 t.start()
 
 if __name__ == '__main__':
-    HStep = 5  
+    HStep = -5  
     try:
         while True:
             # Move camera to the left until the limit
