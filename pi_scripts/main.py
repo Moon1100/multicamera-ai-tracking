@@ -55,10 +55,8 @@ def timerfunc():
         VPulse += VStep
         if VPulse >= 2500: 
             VPulse = 2500
-            VStep = -5 # change direction of movement at upper limit
         if VPulse <= 500:
             VPulse = 500
-            VStep = 5 # change direction of movement at lower limit
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
 
