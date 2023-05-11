@@ -68,7 +68,7 @@ t.setDaemon(True)
 t.start()
 
 if __name__ == '__main__':
-    HStep = -5  
+    VStep = -5  
     try:
         while True:
             pass        
