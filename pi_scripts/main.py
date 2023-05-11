@@ -3,7 +3,7 @@
 from bottle import get, post, run, route, request, template, static_file
 from PCA9685 import PCA9685
 import threading
-import socket  # ip
+import socket #ip
 import os
 import time
 
@@ -12,13 +12,12 @@ pwm.setPWMFreq(50)
 
 # Set servo parameters
 HPulse = 1500  # Sets the initial Pulse
-HStep = 0  # Sets the initial step length
+HStep = 0      # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
-VStep = 0  # Sets the initial step length
+VStep = -5     # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
 pwm.setServoPulse(0, HPulse)
 
-time.sleep(12)
 
 
 def move_up():
@@ -40,13 +39,12 @@ def move_right():
     global HStep
     HStep = -5
 
-
 def timerfunc():
     global HPulse, VPulse, HStep, VStep, pwm
 
     if HStep != 0:
         HPulse += HStep
-        if HPulse >= 2500:
+        if HPulse >= 2500: 
             HPulse = 2500
         if HPulse <= 500:
             HPulse = 500
@@ -55,26 +53,42 @@ def timerfunc():
 
     if VStep != 0:
         VPulse += VStep
-        if VPulse >= 2500:
+        if VPulse >= 2500: 
             VPulse = 2500
+            VStep = -5 # change direction of movement at upper limit
         if VPulse <= 500:
             VPulse = 500
+            VStep = 5 # change direction of movement at lower limit
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
+
+    # restart the timer
+    t = threading.Timer(0.02, timerfunc)
+    t.setDaemon(True)
+    t.start()
 
 
 t = threading.Timer(0.02, timerfunc)
 t.setDaemon(True)
 t.start()
 
-
 if __name__ == '__main__':
     try:
         while True:
-            move_left()  # Move left
-            time.sleep(2)
-            move_right()  # Move right
-            time.sleep(2)
-    except KeyboardInterrupt:
-       print("Exiting")
+            # Move camera to the left until the limit
+            while HPulse > 500:
+                move_left()
+                time.sleep(0.02)
 
+            # Move camera to the right until the limit
+            while HPulse < 2500:
+                move_right()
+                time.sleep(0.02)
+
+            # Move camera to the left until the limit
+            while HPulse > 500:
+                move_left()
+                time.sleep(0.02)
+    except KeyboardInterrupt:
+        print("Exiting")
+    
