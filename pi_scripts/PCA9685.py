@@ -32,6 +32,8 @@ class PCA9685:
     if (self.debug):
       print("Reseting PCA9685")
     self.write(self.__MODE1, 0x00)
+
+    
 	
   def write(self, reg, value):
     "Writes an 8-bit value to the specified register/address"
