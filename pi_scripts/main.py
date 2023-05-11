@@ -18,22 +18,17 @@ VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
 pwm.setServoPulse(0, HPulse)
 
-
-
 def move_up():
     global VStep
     VStep = -5
-
 
 def move_down():
     global VStep
     VStep = 5
 
-
 def move_left():
     global HStep
     HStep = 5
-
 
 def move_right():
     global HStep
@@ -65,7 +60,6 @@ def timerfunc():
     t.setDaemon(True)
     t.start()
 
-
 t = threading.Timer(0.02, timerfunc)
 t.setDaemon(True)
 t.start()
@@ -90,4 +84,3 @@ if __name__ == '__main__':
                 time.sleep(0.02)
     except KeyboardInterrupt:
         print("Exiting")
-    
