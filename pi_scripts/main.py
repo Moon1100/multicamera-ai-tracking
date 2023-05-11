@@ -12,7 +12,7 @@ pwm.setPWMFreq(50)
 
 # Set servo parameters
 HPulse = 1500  # Sets the initial Pulse
-HStep = 0      # Sets the initial step length
+HStep = -5      # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
 VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
@@ -59,6 +59,10 @@ def timerfunc():
             VPulse = 500
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
+    # restart the timer
+    t = threading.Timer(0.02, timerfunc)
+    t.setDaemon(True)
+    t.start()
 
  
 
@@ -68,7 +72,6 @@ t.setDaemon(True)
 t.start()
 
 if __name__ == '__main__':
-    VStep = -5  
     try:
         while True:
             pass        
