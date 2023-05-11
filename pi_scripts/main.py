@@ -60,11 +60,7 @@ def timerfunc():
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
 
-    # cancel the previous timer and start a new one
-    t.cancel()
-    t = threading.Timer(0.02, timerfunc)
-    t.setDaemon(True)
-    t.start()
+ 
 
 
 t = threading.Timer(0.02, timerfunc)
@@ -75,7 +71,6 @@ if __name__ == '__main__':
     HStep = -5  
     try:
         while True:
-            print(HPulse)
-            move_left()
+            pass        
     except KeyboardInterrupt:
         print("Exiting")
