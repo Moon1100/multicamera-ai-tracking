@@ -71,7 +71,7 @@ t.setDaemon(True)
 t.start()
 
 if __name__ == '__main__':
-    HStep = 0  
+    HStep = 5  
     try:
         while True:
             # Move camera to the left until the limit
