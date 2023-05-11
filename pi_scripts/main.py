@@ -55,8 +55,10 @@ def timerfunc():
         VPulse += VStep
         if VPulse >= 2500: 
             VPulse = 2500
+            VStep = -5 
         if VPulse <= 500:
             VPulse = 500
+            VStep = 5 
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
     # restart the timer
