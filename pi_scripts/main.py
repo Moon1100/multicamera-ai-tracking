@@ -75,19 +75,7 @@ if __name__ == '__main__':
     HStep = -5  
     try:
         while True:
-            # Move camera to the left until the limit
-            while HPulse > 500:
-                move_left()
-                time.sleep(0.02)
-
-            # Move camera to the right until the limit
-            while HPulse < 2500:
-                move_right()
-                time.sleep(0.02)
-
-            # Move camera to the left until the limit
-            while HPulse > 500:
-                move_left()
-                time.sleep(0.02)
+            print(HPulse)
+            move_left()
     except KeyboardInterrupt:
         print("Exiting")
