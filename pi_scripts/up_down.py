@@ -2,11 +2,11 @@ import RPi.GPIO as GPIO
 import time
 
 # Set the GPIO pins for the PTZ motor
-up_pin = 17
-down_pin = 18
+up_pin = 33
+down_pin = 32
 
 # Set up the GPIO pins
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(up_pin, GPIO.OUT)
 GPIO.setup(down_pin, GPIO.OUT)
 
