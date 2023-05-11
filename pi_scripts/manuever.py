@@ -20,8 +20,8 @@ pan_increment = 0.1
 tilt_increment = 0.1
 
 # Define initial pan and tilt angles
-pan_angle = 0
-tilt_angle = 0
+pan_angle = 50
+tilt_angle = 50
 
 # Function to move the pan servo to a given angle
 def move_pan(angle):

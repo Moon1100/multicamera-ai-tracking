@@ -226,6 +226,12 @@ def video_feed2():
     camera2 = cv2.VideoCapture('http://192.168.0.5:8080/?action=stream')
     return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
+@app.route('/video_feed3')
+def video_feed3():
+    camera2 = cv2.VideoCapture('http://192.168.0.4:8080/?action=stream')
+    return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
+
  
 if __name__ == '__main__':
     app.run(debug=True)
