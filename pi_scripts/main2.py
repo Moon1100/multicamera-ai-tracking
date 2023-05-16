@@ -8,6 +8,7 @@ import os
 import time
 import redis
 
+
 pwm = PCA9685(0x40)
 pwm.setPWMFreq(50)
 
@@ -79,6 +80,15 @@ t.start()
 if __name__ == '__main__':
     try:
         move(100, 'horizontal')
+        time.sleep(2)
+        move(100, 'horizontal')
+        time.sleep(2)
+        move(100, 'horizontal')
+        time.sleep(2)
+        move(100, 'horizontal')
+        time.sleep(2)
+      
+
         # while True:
         #     pass        
     except KeyboardInterrupt:
