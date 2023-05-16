@@ -72,13 +72,22 @@ t.setDaemon(True)
 t.start()
 
 
-# r = redis.Redis(host='localhost', port=6379, db=0)
-# p = r.pubsub()
+r = redis.Redis(host='192.168.0.108', port=6379, db=0)
+p = r.pubsub()
 # p.subscribe('my_channel')#for testing socket
-# p.subscribe('1')
+channel='1'
+p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
     try:
+        print(f"Listening to channel: {channel}")
+
+        # Start listening to messages
+        for message in p.listen():
+            if message['type'] == 'message':
+                print(f"Received message: {message['data'].decode('utf-8')}")
+
+
         print('init')
         time.sleep(2)
         print('entering horizontal left')

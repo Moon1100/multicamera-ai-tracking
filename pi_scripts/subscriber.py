@@ -28,5 +28,5 @@ def listen_messages(channel):
             print(f"Received message: {message['data'].decode('utf-8')}")
 
 if __name__ == '__main__':
-    channel = 'my_channel'
+    channel = '1'
     listen_messages(channel)
