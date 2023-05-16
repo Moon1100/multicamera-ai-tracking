@@ -100,7 +100,7 @@ if __name__ == '__main__':
         time.sleep(2)
 
         print('entering vertical down')
-        move(-50, 'vertical')
+        move(-0, 'vertical')
         print('end vertical down')
 
         time.sleep(2)
