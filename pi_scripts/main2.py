@@ -79,14 +79,9 @@ t.start()
 
 if __name__ == '__main__':
     try:
-        move(-100, 'horizontal')
-        time.sleep(2)
-        move(-50, 'horizontal')
-        time.sleep(2)
-        move(100, 'veritcal')
-        time.sleep(2)
-        move(-100, 'vertical')
-        time.sleep(2)
+        move(0,'horizontal')
+        move(0,'vertical')
+
       
 
         # while True:
