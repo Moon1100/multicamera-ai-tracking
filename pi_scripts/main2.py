@@ -71,10 +71,10 @@ t.setDaemon(True)
 t.start()
 
 
-r = redis.Redis(host='localhost', port=6379, db=0)
-p = r.pubsub()
+# r = redis.Redis(host='localhost', port=6379, db=0)
+# p = r.pubsub()
 # p.subscribe('my_channel')#for testing socket
-p.subscribe('1')
+# p.subscribe('1')
 
 if __name__ == '__main__':
     try:
