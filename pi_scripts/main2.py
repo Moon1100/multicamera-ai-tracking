@@ -79,16 +79,33 @@ t.start()
 
 if __name__ == '__main__':
     try:
+        print('init')
+        time.sleep(10)
+        print('entering horizontal left')
+        move(-50, 'horizontal')
+        print('end horizontal left')
+
         time.sleep(10)
 
-        move(-50, 'horizontal')
+        print('entering horizontal right')
+        move(50, 'horizontal')
+        print('end horizontal right')
+
         time.sleep(10)
-        move(-50, 'horizontal')
-        time.sleep(10)
+        
+        print('entering vertical up')
         move(50, 'veritcal')
+        print('end vertical up')
+
         time.sleep(10)
+
+        print('entering vertical down')
         move(-50, 'vertical')
+        print('end vertical down')
+
         time.sleep(10)
+        print('completed cycle')
+
       
 
         # while True:
