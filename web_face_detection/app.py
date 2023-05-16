@@ -166,16 +166,16 @@ def gen(camera,ip):
             vertical_offset = (height/2 -
                                center_coordinates[0])
 
-        cv2.putText(frame, "z :"+str(horizontal_offset),
+        cv2.putText(frame, "y :"+str(horizontal_offset),
                     (1020, 600), font, 1.0, (255, 255, 255), 1)
-        cv2.putText(frame, "y :"+str(vertical_offset),
+        cv2.putText(frame, "x :"+str(vertical_offset),
                     (1020, 630), font, 1.0, (255, 255, 255), 1)
         
 
         #publish the offset to camera for correction
-        message = str([horizontal_offset,vertical_offset])
-        r.publish(ip, message)
-        time.sleep(0.2)
+        message = str([vertical_offset,horizontal_offset])
+        r.publish(str(ip), message)
+        print(message)
 
   
 
@@ -221,14 +221,14 @@ def upload_file():
     return redirect(url_for('index'))
 
 
-@app.route('/video_feed2')
-def video_feed2():
+@app.route('/video_feed5')
+def video_feed5():
     camera2 = cv2.VideoCapture('http://192.168.0.5:8080/?action=stream')
     return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/video_feed3')
-def video_feed3():
+@app.route('/video_feed4')
+def video_feed4():
     camera2 = cv2.VideoCapture('http://192.168.0.4:8080/?action=stream')
     return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
 

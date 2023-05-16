@@ -9,5 +9,5 @@ while True:
         print("publisher initiated")
         initiated=True
     message = f"Hello world! {time.time()}"
-    r.publish('my-channel', message)
+    r.publish('my_channel', message)
     time.sleep(0.2)
