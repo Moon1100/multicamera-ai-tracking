@@ -21,24 +21,16 @@ pwm.setServoPulse(0, HPulse)
 
 
 
-def move_up(step):
-    global VStep
-    VStep = step
+def move(step, direction):
+    global HStep, VStep
 
+    if direction == 'horizontal':
+        HStep = step
+        VStep = 0
+    elif direction == 'vertical':
+        HStep = 0
+        VStep = step
 
-def move_down(step):
-    global VStep
-    VStep = -step
-
-
-def move_left(step):
-    global HStep
-    HStep = step
-
-
-def move_right(step):
-    global HStep
-    HStep = -step
 
 def timerfunc():
     global HPulse, VPulse, HStep, VStep, pwm, t
@@ -79,11 +71,15 @@ t.setDaemon(True)
 t.start()
 
 
-# r = redis.Redis(host='localhost', port=6379, db=0)
-# p = r.pubsub()
-# # p.subscribe('my_channel')#for testing socket
-# p.subscribe('1')
+r = redis.Redis(host='localhost', port=6379, db=0)
+p = r.pubsub()
+# p.subscribe('my_channel')#for testing socket
+p.subscribe('1')
 
 if __name__ == '__main__':
-   move_left(5)
-
+    try:
+        move(100, 'horizontal')
+        # while True:
+        #     pass        
+    except KeyboardInterrupt:
+        print("Exiting")
