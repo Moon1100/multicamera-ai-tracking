@@ -18,7 +18,7 @@ import redis
 import time
 
 def publish_message(channel):
-    r = redis.Redis(host='localhost', port=6379, db=0)
+    r = redis.Redis(host='192.168.0.108', port=6379, db=0)
     initiated = False
 
     while True:
