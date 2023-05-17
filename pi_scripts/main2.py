@@ -99,9 +99,13 @@ if __name__ == '__main__':
                     
                     if offset[0]>20:
                         VStep-=1
+                        print ('moving down')
+
 
                     elif offset[0]<20:
                         VStep+=1
+                        print ('moving up')
+
 
                     else :
                        print ('Vertical Locked')
