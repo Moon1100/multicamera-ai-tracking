@@ -98,12 +98,12 @@ if __name__ == '__main__':
 
                     
                     if offset[0]>20:
-                        HStep+=1
+                        HStep-=1
                         print ('moving right')
 
 
-                    elif offset[0]<20:
-                        HStep-=1
+                    elif offset[0]<-20:
+                        HStep+=1
                         print ('moving left')
 
 
