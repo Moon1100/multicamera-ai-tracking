@@ -93,6 +93,8 @@ if __name__ == '__main__':
             if message is not None:
                 if message['type'] == 'message':
                     data = message['data'].decode('utf-8')
+                    print("this:"+data)
+
                     offset = ast.literal_eval(data)
                     if offset[0] == 'und' or offset[1] == 'und':
                         # print('no target within frame')
