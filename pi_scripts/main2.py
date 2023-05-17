@@ -126,7 +126,9 @@ if __name__ == '__main__':
         time.sleep(2)
         print('repositioning')
         move(20, 'vertical')
+        time.sleep(2)
         move(-25, 'horizontal')
+        time.sleep(2)
         print('completed cycle')
 
 
