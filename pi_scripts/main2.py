@@ -84,10 +84,17 @@ if __name__ == '__main__':
 
     
     try:
+        i=0
+        j=0
         for message in p.listen():
+            print('hello : '+str(j))
+            j+=1
+
             if message['type'] == 'message':
                 current_time = time.time()
                 if current_time - last_message_time >= 0.5:
+                    print('hello : '+str(i))
+                    i+=1
                     data = message['data'].decode('utf-8')
                     print("this:" + data)
 
