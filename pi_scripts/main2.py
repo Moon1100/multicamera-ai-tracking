@@ -86,10 +86,10 @@ if __name__ == '__main__':
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
-
         while True:
-            for message in p.listen():
-                print('hello')
+            message = p.get_message(timeout=0.5)
+            
+            if message is not None:
                 if message['type'] == 'message':
                     data = message['data'].decode('utf-8')
                     offset = ast.literal_eval(data)
@@ -110,7 +110,6 @@ if __name__ == '__main__':
                         else:
                             print('Horizontal Locked')
 
-            time.sleep(1)  # Delay for 0.5 seconds between iterations
 
                     
 
