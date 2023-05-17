@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
         # # Start listening to messages
         for message in p.listen():
-            time.sleep(0.5)
+            time.sleep(1)
             if message['type'] == 'message':
                 data=message['data'].decode('utf-8')
                 offset = ast.literal_eval(data)
