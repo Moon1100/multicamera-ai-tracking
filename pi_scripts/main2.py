@@ -93,6 +93,8 @@ if __name__ == '__main__':
                 if offset[0]=='und'or offset[1]=='und':
                     print ('no target within frame')
                 else:
+                    print (offset)
+
                     
                     if offset[0]>0:
                         VStep+=1
