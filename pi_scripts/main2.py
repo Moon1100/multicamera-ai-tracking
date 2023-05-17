@@ -86,8 +86,9 @@ if __name__ == '__main__':
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
+        time.sleep(1)
         for message in p.listen():
-            time.sleep(1)
+            
             if message['type'] == 'message':
                 data=message['data'].decode('utf-8')
                 offset = ast.literal_eval(data)
