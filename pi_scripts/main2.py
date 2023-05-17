@@ -82,21 +82,14 @@ p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
 
+    
     try:
-        # print(f"Listening to channel: {channel}")
-
-        # # Start listening to messages
-        i=0
-        while True:
-            message = p.get_message()
-            time.sleep(1)
-            print('hello'+str(i))
-            i+=1
-            
-            if message is not None:
-                if message['type'] == 'message':
+        for message in p.listen():
+            if message['type'] == 'message':
+                current_time = time.time()
+                if current_time - last_message_time >= 0.5:
                     data = message['data'].decode('utf-8')
-                    print("this:"+data)
+                    print("this:" + data)
 
                     offset = ast.literal_eval(data)
                     if offset[0] == 'und' or offset[1] == 'und':
@@ -116,8 +109,8 @@ if __name__ == '__main__':
                         else:
                             print('Horizontal Locked')
 
+                    last_message_time = current_time  # Update last message time
 
-                    
 
                     # if offset[1]>20:
                     #     HStep+=1
