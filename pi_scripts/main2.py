@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
             if message['type'] == 'message':
                 current_time = time.time()
-                if current_time - last_message_time >= 0.5:
+                if current_time - last_message_time >= 0.2:
                     print('hello : '+str(i))
                     i+=1
                     data = message['data'].decode('utf-8')
