@@ -84,19 +84,15 @@ if __name__ == '__main__':
 
     last_message_time = 0
     try:
-        i=0
-        j=0
+        
         for message in p.listen():
-            print('hello : '+str(j))
-            j+=1
+            print(HStep)
 
             if message['type'] == 'message':
                 current_time = time.time()
-                if current_time - last_message_time >= 1:
-                    print('hello : '+str(i))
-                    i+=1
+                if current_time - last_message_time >= 0.2:
+                    
                     data = message['data'].decode('utf-8')
-                    print("this:" + data)
 
                     offset = ast.literal_eval(data)
                     if offset[0] == 'und' or offset[1] == 'und':
