@@ -86,9 +86,11 @@ if __name__ == '__main__':
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
+        i=0
         while True:
             message = p.get_message(timeout=5)
-            print('hello')
+            print('hello'+str(i))
+            i+=1
             
             if message is not None:
                 if message['type'] == 'message':
