@@ -86,7 +86,6 @@ if __name__ == '__main__':
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
-        time.sleep(1)
         for message in p.listen():
             
             if message['type'] == 'message':
