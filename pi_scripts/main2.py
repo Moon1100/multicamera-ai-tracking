@@ -88,7 +88,8 @@ if __name__ == '__main__':
         # # Start listening to messages
         i=0
         while True:
-            message = p.get_message(timeout=5)
+            message = p.get_message()
+            time.sleep(1)
             print('hello'+str(i))
             i+=1
             
