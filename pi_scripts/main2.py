@@ -82,7 +82,7 @@ p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
 
-    
+    last_message_time = 0
     try:
         i=0
         j=0
