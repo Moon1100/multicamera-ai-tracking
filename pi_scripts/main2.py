@@ -89,11 +89,13 @@ if __name__ == '__main__':
 
         while True:
             for message in p.listen():
+                print('hello')
                 if message['type'] == 'message':
                     data = message['data'].decode('utf-8')
                     offset = ast.literal_eval(data)
                     if offset[0] == 'und' or offset[1] == 'und':
-                        print('no target within frame')
+                        # print('no target within frame')
+                        pass
                     else:
                         print(offset)
 
@@ -108,7 +110,7 @@ if __name__ == '__main__':
                         else:
                             print('Horizontal Locked')
 
-            time.sleep(0.5)  # Delay for 0.5 seconds between iterations
+            time.sleep(1)  # Delay for 0.5 seconds between iterations
 
                     
 
