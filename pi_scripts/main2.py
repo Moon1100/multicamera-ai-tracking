@@ -85,7 +85,11 @@ if __name__ == '__main__':
         # Start listening to messages
         for message in p.listen():
             if message['type'] == 'message':
-                print(f"Received message: {message['data'].decode('utf-8')}")
+                offset=message['data'].decode('utf-8')
+                print(offset )
+                print(type(offset) )
+
+
 
 
         print('init')

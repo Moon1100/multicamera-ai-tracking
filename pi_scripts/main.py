@@ -93,4 +93,6 @@ if __name__ == '__main__':
 
     for message in p.listen():
         if message['type'] == 'message':
-            print(message['data'].decode())
+            offset=message['data'].decode()
+            print(offset )
+            print(type(offset) )
