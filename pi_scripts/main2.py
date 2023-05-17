@@ -125,6 +125,8 @@ if __name__ == '__main__':
 
         time.sleep(2)
         print('completed cycle')
+        move(0, 'vertical')
+        move(0, 'horizontal')
 
       
 
