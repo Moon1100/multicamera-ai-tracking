@@ -86,30 +86,29 @@ if __name__ == '__main__':
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
-        for message in p.listen():
-            
-            if message['type'] == 'message':
-                data=message['data'].decode('utf-8')
-                offset = ast.literal_eval(data)
-                if offset[0]=='und'or offset[1]=='und':
-                    print ('no target within frame')
-                else:
-                    print (offset)
 
-                    
-                    if offset[0]>20:
-                        HStep-=1
-                        print ('moving right')
+        while True:
+            for message in p.listen():
+                if message['type'] == 'message':
+                    data = message['data'].decode('utf-8')
+                    offset = ast.literal_eval(data)
+                    if offset[0] == 'und' or offset[1] == 'und':
+                        print('no target within frame')
+                    else:
+                        print(offset)
 
+                        if offset[0] > 20:
+                            HStep -= 1
+                            print('moving right')
 
-                    elif offset[0]<-20:
-                        HStep+=1
-                        print ('moving left')
+                        elif offset[0] < -20:
+                            HStep += 1
+                            print('moving left')
 
+                        else:
+                            print('Horizontal Locked')
 
-                    else :
-                       print ('Horizontal Locked')
-                    
+            time.sleep(0.5)  # Delay for 0.5 seconds between iterations
 
                     
 

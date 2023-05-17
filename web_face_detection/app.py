@@ -174,6 +174,7 @@ def gen(camera,ip):
 
         #publish the offset to camera for correction
         message = str([vertical_offset,horizontal_offset])
+        
         r.publish(str(ip), message)
         print(message)
 
