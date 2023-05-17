@@ -98,11 +98,11 @@ if __name__ == '__main__':
                         print(offset)
 
                         if offset[0] > 20:
-                            HStep -= 1
+                            HStep += 1
                             print('moving right')
 
                         elif offset[0] < -20:
-                            HStep += 1
+                            HStep -= 1
                             print('moving left')
 
                         else:
