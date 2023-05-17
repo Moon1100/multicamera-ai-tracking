@@ -96,16 +96,26 @@ if __name__ == '__main__':
                     print (offset)
 
                     
-                    if offset[0]>0:
+                    if offset[0]>20:
                         VStep+=1
-                    else:
+
+                    elif offset[0]<20:
                         VStep-=1
+
+                    else :
+                       print ('Vertical Locked')
                     
 
-                    if offset[1]>0:
-                        HStep+=1
-                    else:
-                        HStep-=1
+                    
+
+                    # if offset[1]>20:
+                    #     HStep+=1
+
+                    # elif offset[1]<20:
+                    #     HStep-=1
+
+                    # else :
+                    #    print ('Horizontal Locked')
 
 
 
