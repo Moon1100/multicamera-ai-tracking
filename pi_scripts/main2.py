@@ -81,55 +81,65 @@ channel='1'
 p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
+
     try:
         # print(f"Listening to channel: {channel}")
 
         # # Start listening to messages
-        # for message in p.listen():
-        #     if message['type'] == 'message':
-        #         data=message['data'].decode('utf-8')
-        #         offset = ast.literal_eval(data)
-        #         if offset[0]=='und'or offset[1]=='und':
-        #             print ('no target within frame')
-        #         else:
-        #             if offset[0]>0:
-        #                 move(-50, 'horizontal')
+        for message in p.listen():
+            if message['type'] == 'message':
+                data=message['data'].decode('utf-8')
+                offset = ast.literal_eval(data)
+                if offset[0]=='und'or offset[1]=='und':
+                    print ('no target within frame')
+                else:
+                    
+                    if offset[0]>0:
+                        VStep+=1
+                    else:
+                        VStep-=1
+                    
+
+                    if offset[1]>0:
+                        HStep+=1
+                    else:
+                        HStep-=1
 
 
 
 
 
-        print('init')
-        time.sleep(2)
-        print('entering horizontal left')
-        move(-50, 'horizontal')
-        print('end horizontal left')
+        # print('init')
+        # time.sleep(2)
+        # print('entering horizontal left')
+        # move(-50, 'horizontal')
+        # print('end horizontal left')
 
-        time.sleep(2)
+        # time.sleep(2)
 
-        print('entering horizontal right')
-        move(50, 'horizontal')
-        print('end horizontal right')
+        # print('entering horizontal right')
+        # move(50, 'horizontal')
+        # print('end horizontal right')
 
-        time.sleep(2)
+        # time.sleep(2)
         
-        print('entering vertical up')
-        move(50, 'vertical')
-        print('end vertical up')
+        # print('entering vertical up')
+        # move(50, 'vertical')
+        # print('end vertical up')
 
-        time.sleep(2)
+        # time.sleep(2)
 
-        print('entering vertical down')
-        move(-50, 'vertical')
-        print('end vertical down')
+        # print('entering vertical down')
+        # move(-50, 'vertical')
+        # print('end vertical down')
 
-        time.sleep(2)
-        print('repositioning')
-        move(20, 'vertical')
-        time.sleep(2)
-        move(-25, 'horizontal')
-        time.sleep(2)
-        print('completed cycle')
+        # time.sleep(2)
+        # print('repositioning')
+        # move(20, 'vertical')
+        # time.sleep(2)
+        # move(-25, 'horizontal')
+        # time.sleep(2)
+        # print('completed cycle')
 
 
       
