@@ -98,17 +98,17 @@ if __name__ == '__main__':
 
                     
                     if offset[0]>20:
-                        VStep-=1
-                        print ('moving down')
+                        HStep-=1
+                        print ('moving right')
 
 
                     elif offset[0]<20:
-                        VStep+=1
-                        print ('moving up')
+                        HStep+=1
+                        print ('moving left')
 
 
                     else :
-                       print ('Vertical Locked')
+                       print ('Horizontal Locked')
                     
 
                     
