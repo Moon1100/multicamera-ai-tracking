@@ -87,7 +87,8 @@ if __name__ == '__main__':
 
         # # Start listening to messages
         while True:
-            message = p.get_message(timeout=0.5)
+            message = p.get_message(timeout=1)
+            print('hello')
             
             if message is not None:
                 if message['type'] == 'message':
