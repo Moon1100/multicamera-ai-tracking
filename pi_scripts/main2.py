@@ -7,6 +7,8 @@ import socket #ip
 import os
 import time
 import redis
+import ast
+
 
 
 pwm = PCA9685(0x40)
@@ -80,14 +82,19 @@ p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
     try:
-        print(f"Listening to channel: {channel}")
+        # print(f"Listening to channel: {channel}")
 
-        # Start listening to messages
-        for message in p.listen():
-            if message['type'] == 'message':
-                offset=message['data'].decode('utf-8')
-                print(offset )
-                print(type(offset) )
+        # # Start listening to messages
+        # for message in p.listen():
+        #     if message['type'] == 'message':
+        #         data=message['data'].decode('utf-8')
+        #         offset = ast.literal_eval(data)
+        #         if offset[0]=='und'or offset[1]=='und':
+        #             print ('no target within frame')
+        #         else:
+        #             if offset[0]>0:
+        #                 move(-50, 'horizontal')
+
 
 
 
