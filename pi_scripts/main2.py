@@ -118,11 +118,11 @@ if __name__ == '__main__':
                         pass
                     else:
 
-                        if offset[0] > 20:
+                        if offset[0] > 60:
                             move(-1, 'vertical')
                             print('moving up')
 
-                        elif offset[0] < -20:
+                        elif offset[0] < 30:
                             move(1, 'vertical')
                             print('moving down')
 
