@@ -137,27 +137,33 @@ if __name__ == '__main__':
         time.sleep(2)
 
         print('entering horizontal right')
-        move(50, 'horizontal')
+        move(25, 'horizontal')
         print('end horizontal right')
 
         time.sleep(2)
+
+        # print('entering horizontal right')
+        # move(50, 'horizontal')
+        # print('end horizontal right')
+
+        # time.sleep(2)
         
-        print('entering vertical up')
-        move(50, 'vertical')
-        print('end vertical up')
+        # print('entering vertical up')
+        # move(50, 'vertical')
+        # print('end vertical up')
 
-        time.sleep(2)
+        # time.sleep(2)
 
-        print('entering vertical down')
-        move(-50, 'vertical')
-        print('end vertical down')
+        # print('entering vertical down')
+        # move(-50, 'vertical')
+        # print('end vertical down')
 
-        time.sleep(2)
-        print('repositioning')
-        move(0, 'vertical')
-        time.sleep(2)
-        move(0, 'horizontal')
-        time.sleep(2)
+        # time.sleep(2)
+        # print('repositioning')
+        # move(0, 'vertical')
+        # time.sleep(2)
+        # move(0, 'horizontal')
+        # time.sleep(2)
         print('completed cycle')
 
 
