@@ -95,7 +95,8 @@ if __name__ == '__main__':
 
                     offset = ast.literal_eval(data)
                     if offset[0] == 'und' or offset[1] == 'und':
-                        # print('no target within frame')
+                        print('no target within frame')
+                        move(0, 'horizontal')
                         pass
                     else:
 
@@ -110,6 +111,24 @@ if __name__ == '__main__':
                         else:
                             move(0, 'horizontal')
                             print('Horizontal Locked')
+
+                    if offset[0] == 'und' or offset[1] == 'und':
+                        print('no target within frame')
+                        move(0, 'vertical')
+                        pass
+                    else:
+
+                        if offset[0] > 20:
+                            move(1, 'vertical')
+                            print('moving up')
+
+                        elif offset[0] < -20:
+                            move(-1, 'vertical')
+                            print('moving down')
+
+                        else:
+                            move(0, 'vertical')
+                            print('vertical Locked')
 
                     last_message_time = current_time  # Update last message time
 
