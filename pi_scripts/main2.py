@@ -137,7 +137,39 @@ if __name__ == '__main__':
         time.sleep(2)
 
         print('entering horizontal right')
-        move(-1, 'horizontal')
+        move(1, 'horizontal')
+        print('end horizontal right')
+
+        time.sleep(2)
+
+        print('entering horizontal right')
+        move(1, 'horizontal')
+        print('end horizontal right')
+
+        time.sleep(2)
+
+
+        print('entering horizontal right')
+        move(1, 'horizontal')
+        print('end horizontal right')
+
+        time.sleep(2)
+
+        print('entering horizontal right')
+        move(1, 'horizontal')
+        print('end horizontal right')
+
+        time.sleep(2)
+
+
+        print('entering horizontal right')
+        move(1, 'horizontal')
+        print('end horizontal right')
+
+        time.sleep(2)
+
+        print('entering horizontal right')
+        move(1, 'horizontal')
         print('end horizontal right')
 
         time.sleep(2)
