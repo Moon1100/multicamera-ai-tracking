@@ -85,34 +85,34 @@ if __name__ == '__main__':
     last_message_time = 0
     try:
         
-        for message in p.listen():
-            print(HStep)
+        # for message in p.listen():
+        #     print(HStep)
 
-            if message['type'] == 'message':
-                current_time = time.time()
-                if current_time - last_message_time >= 0.2:
+        #     if message['type'] == 'message':
+        #         current_time = time.time()
+        #         if current_time - last_message_time >= 0.2:
                     
-                    data = message['data'].decode('utf-8')
+        #             data = message['data'].decode('utf-8')
 
-                    offset = ast.literal_eval(data)
-                    if offset[0] == 'und' or offset[1] == 'und':
-                        # print('no target within frame')
-                        pass
-                    else:
-                        print(offset)
+        #             offset = ast.literal_eval(data)
+        #             if offset[0] == 'und' or offset[1] == 'und':
+        #                 # print('no target within frame')
+        #                 pass
+        #             else:
+        #                 print(offset)
 
-                        if offset[0] > 20:
-                            HStep += 1
-                            print('moving right')
+        #                 if offset[0] > 20:
+        #                     HStep += 1
+        #                     print('moving right')
 
-                        elif offset[0] < -20:
-                            HStep -= 1
-                            print('moving left')
+        #                 elif offset[0] < -20:
+        #                     HStep -= 1
+        #                     print('moving left')
 
-                        else:
-                            print('Horizontal Locked')
+        #                 else:
+        #                     print('Horizontal Locked')
 
-                    last_message_time = current_time  # Update last message time
+        #             last_message_time = current_time  # Update last message time
 
 
                     # if offset[1]>20:
@@ -128,37 +128,37 @@ if __name__ == '__main__':
 
 
 
-        # print('init')
-        # time.sleep(2)
-        # print('entering horizontal left')
-        # move(-50, 'horizontal')
-        # print('end horizontal left')
+        print('init')
+        time.sleep(2)
+        print('entering horizontal left')
+        move(-50, 'horizontal')
+        print('end horizontal left')
 
-        # time.sleep(2)
+        time.sleep(2)
 
-        # print('entering horizontal right')
-        # move(50, 'horizontal')
-        # print('end horizontal right')
+        print('entering horizontal right')
+        move(50, 'horizontal')
+        print('end horizontal right')
 
-        # time.sleep(2)
+        time.sleep(2)
         
-        # print('entering vertical up')
-        # move(50, 'vertical')
-        # print('end vertical up')
+        print('entering vertical up')
+        move(50, 'vertical')
+        print('end vertical up')
 
-        # time.sleep(2)
+        time.sleep(2)
 
-        # print('entering vertical down')
-        # move(-50, 'vertical')
-        # print('end vertical down')
+        print('entering vertical down')
+        move(-50, 'vertical')
+        print('end vertical down')
 
-        # time.sleep(2)
-        # print('repositioning')
-        # move(20, 'vertical')
-        # time.sleep(2)
-        # move(-25, 'horizontal')
-        # time.sleep(2)
-        # print('completed cycle')
+        time.sleep(2)
+        print('repositioning')
+        move(20, 'vertical')
+        time.sleep(2)
+        move(-25, 'horizontal')
+        time.sleep(2)
+        print('completed cycle')
 
 
       
