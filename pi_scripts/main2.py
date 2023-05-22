@@ -112,23 +112,23 @@ if __name__ == '__main__':
                             move(0, 'horizontal')
                             print('Horizontal Locked')
 
-                    if offset[0] == 'und' or offset[1] == 'und':
-                        print('no target within frame')
-                        move(0, 'vertical')
-                        pass
-                    else:
+                    # if offset[0] == 'und' or offset[1] == 'und':
+                    #     print('no target within frame')
+                    #     move(0, 'vertical')
+                    #     pass
+                    # else:
 
-                        if offset[1] > 60:
-                            move(-1, 'vertical')
-                            print('moving up')
+                    #     if offset[1] > 60:
+                    #         move(-1, 'vertical')
+                    #         print('moving up')
 
-                        elif offset[1] < 30:
-                            move(1, 'vertical')
-                            print('moving down')
+                    #     elif offset[1] < 30:
+                    #         move(1, 'vertical')
+                    #         print('moving down')
 
-                        else:
-                            move(0, 'vertical')
-                            print('vertical Locked')
+                    #     else:
+                    #         move(0, 'vertical')
+                    #         print('vertical Locked')
 
                     last_message_time = current_time  # Update last message time
 
