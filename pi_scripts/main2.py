@@ -86,7 +86,6 @@ if __name__ == '__main__':
     try:
         
         for message in p.listen():
-            move(0, 'horizontal')
             
             if message['type'] == 'message':
                 current_time = time.time()
