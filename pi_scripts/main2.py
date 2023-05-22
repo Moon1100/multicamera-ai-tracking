@@ -86,8 +86,8 @@ if __name__ == '__main__':
     try:
         
         for message in p.listen():
-            print(HStep)
-
+            move(0, 'horizontal')
+            
             if message['type'] == 'message':
                 current_time = time.time()
                 if current_time - last_message_time >= 0.2:
@@ -99,7 +99,6 @@ if __name__ == '__main__':
                         # print('no target within frame')
                         pass
                     else:
-                        print(offset)
 
                         if offset[0] > 20:
                             move(1, 'horizontal')
@@ -110,6 +109,7 @@ if __name__ == '__main__':
                             print('moving left')
 
                         else:
+                            move(0, 'horizontal')
                             print('Horizontal Locked')
 
                     last_message_time = current_time  # Update last message time
