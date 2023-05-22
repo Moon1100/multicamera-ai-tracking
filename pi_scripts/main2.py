@@ -131,13 +131,13 @@ if __name__ == '__main__':
         print('init')
         time.sleep(2)
         print('entering horizontal left')
-        move(-50, 'horizontal')
+        move(1, 'horizontal')
         print('end horizontal left')
 
         time.sleep(2)
 
         print('entering horizontal right')
-        move(25, 'horizontal')
+        move(-1, 'horizontal')
         print('end horizontal right')
 
         time.sleep(2)
