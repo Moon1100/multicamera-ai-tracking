@@ -83,6 +83,7 @@ p.subscribe(f'{channel}')
 if __name__ == '__main__':
 
     last_message_time = 0
+    vertical=False
     try:
         
         for message in p.listen():
@@ -94,41 +95,46 @@ if __name__ == '__main__':
                     data = message['data'].decode('utf-8')
 
                     offset = ast.literal_eval(data)
-                    if offset[0] == 'und' or offset[1] == 'und':
-                        print('no target within frame')
-                        move(0, 'horizontal')
-                        pass
-                    else:
-
-                        if offset[0] > -88:
-                            move(1, 'horizontal')
-                            print('moving right')
-
-                        elif offset[0] < -100:
-                            move(-1, 'horizontal')
-                            print('moving left')
-
-                        else:
+                    if (vertical==True):
+                        if offset[0] == 'und' or offset[1] == 'und':
+                            print('no target within frame')
                             move(0, 'horizontal')
-                            print('Horizontal Locked')
+                            pass
+                        else:
 
-                    # if offset[0] == 'und' or offset[1] == 'und':
-                    #     print('no target within frame')
-                    #     move(0, 'vertical')
-                    #     pass
-                    # else:
+                            if offset[0] > -88:
+                                move(1, 'horizontal')
+                                print('moving right')
 
-                    #     if offset[1] > 60:
-                    #         move(-1, 'vertical')
-                    #         print('moving up')
+                            elif offset[0] < -100:
+                                move(-1, 'horizontal')
+                                print('moving left')
 
-                    #     elif offset[1] < 30:
-                    #         move(1, 'vertical')
-                    #         print('moving down')
+                            else:
+                                move(0, 'horizontal')
+                                print('Horizontal Locked')
+                        vertical=False
 
-                    #     else:
-                    #         move(0, 'vertical')
-                    #         print('vertical Locked')
+                    else:
+                        if offset[0] == 'und' or offset[1] == 'und':
+                            print('no target within frame')
+                            move(0, 'vertical')
+                            pass
+                        else:
+
+                            if offset[1] > 60:
+                                move(-1, 'vertical')
+                                print('moving up')
+
+                            elif offset[1] < 30:
+                                move(1, 'vertical')
+                                print('moving down')
+
+                            else:
+                                move(0, 'vertical')
+                                print('vertical Locked')
+                    vertical=True
+
 
                     last_message_time = current_time  # Update last message time
 
