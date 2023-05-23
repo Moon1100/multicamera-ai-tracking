@@ -133,7 +133,7 @@ if __name__ == '__main__':
                             else:
                                 move(0, 'vertical')
                                 print('vertical Locked')
-                    vertical=True
+                        vertical=True
 
 
                     last_message_time = current_time  # Update last message time
