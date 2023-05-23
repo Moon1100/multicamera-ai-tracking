@@ -102,11 +102,11 @@ if __name__ == '__main__':
                             pass
                         else:
 
-                            if offset[0] > -88:
+                            if offset[0] > -70:
                                 move(1, 'horizontal')
                                 print('moving right')
 
-                            elif offset[0] < -100:
+                            elif offset[0] < -110:
                                 move(-1, 'horizontal')
                                 print('moving left')
 
