@@ -7,13 +7,18 @@ import socket #ip
 import os
 import time
 import redis
+import ast
+import os
+
+
+
 
 pwm = PCA9685(0x40)
 pwm.setPWMFreq(50)
 
 # Set servo parameters
 HPulse = 1500  # Sets the initial Pulse
-HStep = -5    # Sets the initial step length
+HStep = 0    # Sets the initial step length
 VPulse = 1500  # Sets the initial Pulse
 VStep = 0    # Sets the initial step length (constant movement up)
 pwm.setServoPulse(1, VPulse)
@@ -21,24 +26,16 @@ pwm.setServoPulse(0, HPulse)
 
 
 
-def move_up():
-    global VStep
-    VStep = -5
+def move(step, direction):
+    global HStep, VStep
 
+    if direction == 'horizontal':
+        HStep = step
+        VStep = 0
+    elif direction == 'vertical':
+        HStep = 0
+        VStep = step
 
-def move_down():
-    global VStep
-    VStep = 5
-
-
-def move_left():
-    global HStep
-    HStep = 5
-
-
-def move_right():
-    global HStep
-    HStep = -5
 
 def timerfunc():
     global HPulse, VPulse, HStep, VStep, pwm, t
@@ -47,11 +44,11 @@ def timerfunc():
         HPulse += HStep
         if HPulse >= 2500: 
             HPulse = 2500
-            HStep = -5 
+            HStep = 0 
 
         if HPulse <= 500:
             HPulse = 500
-            HStep = 5 
+            HStep = 0 
 
         # set channel 2, the Horizontal servo
         pwm.setServoPulse(0, HPulse)
@@ -60,10 +57,10 @@ def timerfunc():
         VPulse += VStep
         if VPulse >= 2500: 
             VPulse = 2500
-            VStep = -5 
+            VStep = 0 
         if VPulse <= 500:
             VPulse = 500
-            VStep = 5 
+            VStep = 0 
         # set channel 3, the vertical servo
         pwm.setServoPulse(1, VPulse)
     # restart the timer
@@ -79,20 +76,113 @@ t.setDaemon(True)
 t.start()
 
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+r = redis.Redis(host='192.168.0.108', port=6379, db=0)
 p = r.pubsub()
 # p.subscribe('my_channel')#for testing socket
-p.subscribe('1')
+channel=os.environ.get('CHANNEL')
+p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
-    # try:
-    #     while True:
-    #         pass        
-    # except KeyboardInterrupt:
-    #     print("Exiting")
 
-    for message in p.listen():
-        if message['type'] == 'message':
-            offset=message['data'].decode()
-            print(offset )
-            print(type(offset) )
+    last_message_time = 0
+    vertical=False
+    try:
+        
+        for message in p.listen():
+            
+            if message['type'] == 'message':
+                current_time = time.time()
+                if current_time - last_message_time >= 0.2:
+                    
+                    data = message['data'].decode('utf-8')
+
+                    offset = ast.literal_eval(data)
+                    if (vertical==True):
+                        if offset[0] == 'und' or offset[1] == 'und':
+                            print('no target within frame')
+                            move(0, 'horizontal')
+                            pass
+                        else:
+
+                            if offset[0] > -70:
+                                move(1, 'horizontal')
+                                print('moving right')
+
+                            elif offset[0] < -110:
+                                move(-1, 'horizontal')
+                                print('moving left')
+
+                            else:
+                                move(0, 'horizontal')
+                                print('Horizontal Locked')
+                        vertical=False
+
+                    else:
+                        if offset[0] == 'und' or offset[1] == 'und':
+                            print('no target within frame')
+                            move(0, 'vertical')
+                            pass
+                        else:
+
+                            if offset[1] > 60:
+                                move(-1, 'vertical')
+                                print('moving up')
+
+                            elif offset[1] < 30:
+                                move(1, 'vertical')
+                                print('moving down')
+
+                            else:
+                                move(0, 'vertical')
+                                print('vertical Locked')
+                        vertical=True
+
+
+                    last_message_time = current_time  # Update last message time
+
+
+                    # if offset[1]>20:
+                    #     HStep+=1
+
+                    # elif offset[1]<20:
+                    #     HStep-=1
+
+                    # else :
+                    #    print ('Horizontal Locked')
+
+
+
+
+
+
+        # print('entering horizontal right')
+        # move(50, 'horizontal')
+        # print('end horizontal right')
+
+        # time.sleep(2)
+        
+        # print('entering vertical up')
+        # move(50, 'vertical')
+        # print('end vertical up')
+
+        # time.sleep(2)
+
+        # print('entering vertical down')
+        # move(-50, 'vertical')
+        # print('end vertical down')
+
+        # time.sleep(2)
+        # print('repositioning')
+        # move(0, 'vertical')
+        # time.sleep(2)
+        # move(0, 'horizontal')
+        # time.sleep(2)
+        print('completed cycle')
+
+
+      
+
+        # while True:
+        #     pass        
+    except KeyboardInterrupt:
+        print("Exiting")
