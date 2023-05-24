@@ -197,12 +197,6 @@ def index():
     return render_template('index5.html')
 
 
-@app.route('/video_feed1')
-def video_feed1():
-    ip=0
-    camera1 = cv2.VideoCapture(ip)
-    return Response(gen(camera1,ip), mimetype='multipart/x-mixed-replace; boundary=frame')
-
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -221,17 +215,28 @@ def upload_file():
     flash('Image ready to be traked', 'success')
     return redirect(url_for('index'))
 
+@app.route('/video_feed1')
+def video_feed1():
+    ip=0
+    camera1 = cv2.VideoCapture(ip)
+    return Response(gen(camera1,ip), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 @app.route('/video_feed5')
 def video_feed5():
-    camera2 = cv2.VideoCapture('http://192.168.0.5:8080/?action=stream')
-    return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
+    camera5 = cv2.VideoCapture('http://192.168.0.5:8080/?action=stream')
+    return Response(gen(camera5,5), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/video_feed4')
 def video_feed4():
     camera2 = cv2.VideoCapture('http://192.168.0.4:8080/?action=stream')
-    return Response(gen(camera2,1), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(camera2,4), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/video_feed3')
+def video_feed3():
+    camera3 = cv2.VideoCapture('http://192.168.0.3:8080/?action=stream')
+    return Response(gen(camera3,3), mimetype='multipart/x-mixed-replace; boundary=frame')
 
  
 if __name__ == '__main__':
