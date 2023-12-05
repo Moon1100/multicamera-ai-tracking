@@ -76,7 +76,7 @@ t.setDaemon(True)
 t.start()
 
 
-r = redis.Redis(host='192.168.0.108', port=6379, db=0)
+r = redis.Redis(host='192.168.0.105', port=6379, db=0)
 p = r.pubsub()
 # p.subscribe('my_channel')#for testing socket
 channel='4'

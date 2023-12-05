@@ -9,7 +9,9 @@ import time
 
 app = Flask(__name__)
 app.secret_key = 'rtdyteuliuhcdoeich23842'
-r = redis.Redis(host='192.168.0.108', port=6379, db=0)
+
+
+r = redis.Redis(host='192.168.0.105', port=6379, db=0)
 
 
 def gen(camera,ip):
