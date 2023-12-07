@@ -79,7 +79,7 @@ t.start()
 r = redis.Redis(host='192.168.0.105', port=6379, db=0)
 p = r.pubsub()
 # p.subscribe('my_channel')#for testing socket
-channel='4'
+channel='3'
 p.subscribe(f'{channel}')
 
 if __name__ == '__main__':
