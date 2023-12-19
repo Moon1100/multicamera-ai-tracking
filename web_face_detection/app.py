@@ -56,13 +56,19 @@ def gen(camera,ip):
     face_encodings = []
     face_names = []
     process_this_frame = True
+    process_frequency = 5
+    counter = 0
     while True:
         ret, frame = camera.read()
         if not ret:
             break
+        counter += 1
+        print(counter)
 
         # # Process the frame
-        if process_this_frame:
+        if process_this_frame and counter % process_frequency == 0:
+            counter = 0
+
             # Resize frame of video to 1/4 size for faster face recognition processing
             small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
