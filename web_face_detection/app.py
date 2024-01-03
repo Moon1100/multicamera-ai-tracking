@@ -13,6 +13,35 @@ app.secret_key = 'rtdyteuliuhcdoeich23842'
 
 r = redis.Redis(host='192.168.0.105', port=6379, db=0)
 
+
+
+jpg_files = [f for f in os.listdir("storage") if f.endswith(".jpg")]
+if jpg_files:
+    target_image_filename_only, _ = os.path.splitext(jpg_files[0])
+    target_image_filename = jpg_files[0]
+
+    target_image_path = os.path.join("storage", target_image_filename)
+else:
+    flash('No target initialized', 'error')
+
+# Load a sample picture and learn how to recognize it.
+target_image = face_recognition.load_image_file(target_image_path)
+target_face_encoding = face_recognition.face_encodings(target_image)[0]
+
+# Create arrays of known face encodings and their names
+known_face_encodings = [
+    target_face_encoding
+]
+known_face_names = [
+    target_image_filename_only,
+]
+
+# Initialize some variables
+face_locations = []
+face_encodings = []
+face_names = []
+
+
 def gen(camera,ip): 
 
     video_capture = camera
@@ -30,31 +59,33 @@ def gen(camera,ip):
     # print("Resolution:", width, "x", height)
 
     # Get the filename of the first JPG file in the storage folder
-    jpg_files = [f for f in os.listdir("storage") if f.endswith(".jpg")]
-    if jpg_files:
-        target_image_filename_only, _ = os.path.splitext(jpg_files[0])
-        target_image_filename = jpg_files[0]
+    # jpg_files = [f for f in os.listdir("storage") if f.endswith(".jpg")]
+    # if jpg_files:
+    #     target_image_filename_only, _ = os.path.splitext(jpg_files[0])
+    #     target_image_filename = jpg_files[0]
 
-        target_image_path = os.path.join("storage", target_image_filename)
-    else:
-        flash('No target initialized', 'error')
+    #     target_image_path = os.path.join("storage", target_image_filename)
+    # else:
+    #     flash('No target initialized', 'error')
 
-    # Load a sample picture and learn how to recognize it.
-    target_image = face_recognition.load_image_file(target_image_path)
-    target_face_encoding = face_recognition.face_encodings(target_image)[0]
+    # # Load a sample picture and learn how to recognize it.
+    # target_image = face_recognition.load_image_file(target_image_path)
+    # target_face_encoding = face_recognition.face_encodings(target_image)[0]
 
-    # Create arrays of known face encodings and their names
-    known_face_encodings = [
-        target_face_encoding
-    ]
-    known_face_names = [
-        target_image_filename_only,
-    ]
+    # # Create arrays of known face encodings and their names
+    # known_face_encodings = [
+    #     target_face_encoding
+    # ]
+    # known_face_names = [
+    #     target_image_filename_only,
+    # ]
 
-    # Initialize some variables
-    face_locations = []
-    face_encodings = []
-    face_names = []
+    # # Initialize some variables
+    # face_locations = []
+    # face_encodings = []
+    # face_names = []
+
+
     process_this_frame = True
     process_frequency = 5
     counter = 0
@@ -62,25 +93,27 @@ def gen(camera,ip):
         ret, frame = camera.read()
         if not ret:
             break
-        counter += 1
-        print(counter)
+        # counter += 1
+        # print(counter)
 
         # # Process the frame
-        if process_this_frame and counter % process_frequency == 0:
-            counter = 0
+        if process_this_frame  and counter % process_frequency == 0:
 
-            # Resize frame of video to 1/4 size for faster face recognition processing
+            # counter = 0
+
+            # # Resize frame of video to 1/4 size for faster face recognition processing
             small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
-            # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
+            # # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
             rgb_small_frame = small_frame[:, :, ::-1]
 
-            # Find all the faces and face encodings in the current frame of video
+            # # Find all the faces and face encodings in the current frame of video
             face_locations = face_recognition.face_locations(rgb_small_frame)
-            face_encodings = face_recognition.face_encodings(
-                rgb_small_frame, face_locations)
+            face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
             face_names = []
+
+
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
                 matches = face_recognition.compare_faces(
@@ -180,6 +213,8 @@ def gen(camera,ip):
         
 
         #publish the offset to camera for correction
+
+
         message = str([vertical_offset,horizontal_offset])
         
         r.publish(str(ip), message)
