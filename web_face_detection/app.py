@@ -13,8 +13,8 @@ app.secret_key = 'rtdyteuliuhcdoeich23842'
 
 r = redis.Redis(host='192.168.0.105', port=6379, db=0)
 
-
-def gen(camera,ip):
+def gen(camera,ip): 
+  try:
     video_capture = camera
     # get frame rate
     fps = video_capture.get(cv2.CAP_PROP_FPS)
@@ -101,8 +101,7 @@ def gen(camera,ip):
 
                 face_names.append(name)
 
-        process_this_frame = not process_this_frame
-
+        
         horizontal_offset = 'und'
         vertical_offset = 'und'
         font = cv2.FONT_HERSHEY_DUPLEX
@@ -124,7 +123,7 @@ def gen(camera,ip):
 
             # Draw a label with a name below the face
             cv2.rectangle(frame, (left, bottom - 35),
-                          (right, bottom), (0, 0, 255), cv2.FILLED)
+                        (right, bottom), (0, 0, 255), cv2.FILLED)
 
             # Center coordinates
             forhead_coordinates = (((right-left)//2+left), top)
@@ -157,13 +156,13 @@ def gen(camera,ip):
 
             # Draw a vertical green line with thickness of 9 px
             cv2.line(frame, start_point_verticle,
-                     end_point_horizontal, color, thickness)
+                    end_point_horizontal, color, thickness)
 
             start_point_horizontal = (0, height_center)
             end_point_horizontal = (width, height_center)
             # Draw a horizontal green line with thickness of 9 px
             cv2.line(frame, start_point_horizontal,
-                     end_point_horizontal, color, thickness)
+                    end_point_horizontal, color, thickness)
 
             # print("horizontal offset : "+str(height/2-center_coordinates[1]))
             # print("vertical offset : "+str(width/2-center_coordinates[0]))
@@ -172,7 +171,7 @@ def gen(camera,ip):
                         font, 1.0, (255, 255, 255), 1)
             horizontal_offset = (width/2 - center_coordinates[1])
             vertical_offset = (height/2 -
-                               center_coordinates[0])
+                            center_coordinates[0])
 
         cv2.putText(frame, "y :"+str(horizontal_offset),
                     (1020, 600), font, 1.0, (255, 255, 255), 1)
@@ -186,6 +185,10 @@ def gen(camera,ip):
         r.publish(str(ip), message)
         print(message)
 
+        
+        process_this_frame = not process_this_frame
+
+       
   
 
         # Convert the processed frame to a byte stream
@@ -199,6 +202,7 @@ def gen(camera,ip):
         yield (b'--frame\r\n'
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+ 
 
 @app.route('/')
 def index():
