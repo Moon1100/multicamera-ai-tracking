@@ -1,4 +1,3 @@
-Certainly! Here's a detailed step-by-step documentation for your multicamera tracking web app setup:
 
 ## Multicamera Tracking Web App Documentation
 
@@ -123,3 +122,8 @@ After completing the initialization and calibration steps, the web app is ready 
 ### Conclusion<a name="conclusion"></a>
 
 Congratulations! You have successfully set up and configured the multicamera tracking web app. For any further customization or troubleshooting, refer to the project documentation and community resources.
+
+
+
+Authorship
+Muhammad Aliff Izzuddin: University of Malaya, Matriculation Number: 17203058 (2024)
